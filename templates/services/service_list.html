@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Zentropic Software Solution{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/services.css' %}">
+
+<section class="services-hero py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">Our Services</h1>
+            <p class="lead">Comprehensive digital solutions tailored for your business success</p>
+        </div>
+        
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="{{ service.icon }}"></i>
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.short_description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design solutions that enhance user experience and drive engagement.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Eye-catching visual designs that communicate your brand message effectively.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Website Development</h3>
+                    <p>Custom website solutions that are responsive, fast, and optimized for conversions.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications designed for optimal user experience.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Result-driven digital marketing strategies to boost your online presence and growth.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Social Media Marketing</h3>
+                    <p>Strategic social media campaigns to enhance brand awareness and customer engagement.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="service-process py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Process</h2>
+            <p class="section-subtitle">How we deliver exceptional service experiences</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="process-timeline">
+                    <div class="process-item">
+                        <div class="process-circle">1</div>
+                        <div class="process-content">
+                            <h4>Discovery</h4>
+                            <p>We start by understanding your business goals, target audience, and project requirements.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-circle">2</div>
+                        <div class="process-content">
+                            <h4>Planning</h4>
+                            <p>We create a strategic roadmap with clear milestones, timelines, and deliverables.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-circle">3</div>
+                        <div class="process-content">
+                            <h4>Design & Development</h4>
+                            <p>Our team crafts visually appealing designs and develops robust, scalable solutions.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-circle">4</div>
+                        <div class="process-content">
+                            <h4>Testing & Refinement</h4>
+                            <p>We conduct thorough testing to ensure quality and make necessary refinements.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-circle">5</div>
+                        <div class="process-content">
+                            <h4>Deployment & Support</h4>
+                            <p>We launch your solution and provide ongoing support to ensure optimal performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-card bg-primary text-white">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="mb-2">Ready to transform your digital presence?</h2>
+                    <p class="mb-0">Get in touch with our team to discuss your project needs and objectives.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{% url 'contact:contact' %}" class="btn btn-light btn-lg">Get a Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

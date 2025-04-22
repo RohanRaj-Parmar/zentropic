@@ -1,0 +1,283 @@
+/* Services Page Styles - Color scheme updated to match Zentropic logo */
+
+/* Hero Section */
+.services-hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8e4f7 100%);
+  position: relative;
+  padding: 70px 0;
+}
+
+.services-hero h1 {
+  color: #000000;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.services-hero h1:after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: #6952A3;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.services-hero .lead {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #333333;
+}
+
+/* Service Cards */
+.service-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 30px 25px;
+  transition: all 0.3s ease;
+  border: 1px solid #edf2f7;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #6952A3;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover:before {
+  transform: scaleX(1);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(105, 82, 163, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.service-icon i {
+  font-size: 28px;
+  color: #6952A3;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  background: #6952A3;
+  transform: rotate(10deg);
+}
+
+.service-card:hover .service-icon i {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: #333333;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.service-card .btn-link {
+  color: #6952A3;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.service-card .btn-link i {
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+}
+
+.service-card .btn-link:hover {
+  color: #503d83;
+}
+
+.service-card .btn-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Process Section */
+.service-process {
+  padding: 80px 0;
+  background-color: #f7f7fa;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.section-subtitle {
+  color: #333333;
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.process-timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.process-timeline:before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: calc(100% - 50px);
+  background: #e2e2e8;
+  left: 22px;
+  top: 50px;
+}
+
+.process-item {
+  display: flex;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.process-item:last-child {
+  margin-bottom: 0;
+}
+
+.process-circle {
+  min-width: 48px;
+  height: 48px;
+  background: #6952A3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(105, 82, 163, 0.3);
+  border: 3px solid #fff;
+}
+
+.process-content {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 20px 25px;
+  margin-left: 25px;
+  border: 1px solid #edf2f7;
+  flex: 1;
+}
+
+.process-content h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.process-content p {
+  color: #333333;
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 60px 0;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, #6952A3 0%, #503d83 100%);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 15px 30px rgba(105, 82, 163, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card:before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  top: -100px;
+  right: -50px;
+}
+
+.cta-card:after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  bottom: -60px;
+  left: -30px;
+}
+
+.cta-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.cta-card p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.cta-card .btn-light {
+  background: #ffffff;
+  color: #6952A3;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.cta-card .btn-light:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments remain the same */

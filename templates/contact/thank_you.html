@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Thank You - Zentropic Software Solution{% endblock %}
+
+{% block content %}
+<section class="thank-you-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="thank-you-card p-5 shadow-sm rounded bg-white">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success fa-5x"></i>
+                    </div>
+                    <h1 class="display-4 mb-4">Thank You!</h1>
+                    <p class="lead mb-4">Your message has been successfully sent. We appreciate you contacting Zentropic Software Solution. One of our team members will get back to you shortly.</p>
+                    <div class="mt-5">
+                        <a href="{% url 'core:home' %}" class="btn btn-primary me-3">Back to Home</a>
+                        <a href="{% url 'services:service_list' %}">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

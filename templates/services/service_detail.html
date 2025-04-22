@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - Zentropic Software Solution{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/services.css' %}">
+
+
+<section class="service-detail py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="mb-4">{{ service.title }}</h1>
+                <div class="service-detail-image mb-4">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid rounded">
+                    {% else %}
+                    <img src="{% static 'images/service-placeholder.jpg' %}" alt="{{ service.title }}" class="img-fluid rounded">
+                    {% endif %}
+                </div>
+                <div class="service-content">
+                    {{ service.description|safe }}
+                </div>
+                
+                <div class="service-features mt-5">
+                    <h3 class="mb-4">Key Features</h3>
+                    <div class="row">
+                        {% for feature in service.servicefeature_set.all %}
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-item">
+                                <i class="{{ feature.icon }} text-primary me-2"></i>
+                                <span>{{ feature.title }}</span>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                <span>Customized Solutions</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                <span>Expert Team</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                <span>Quick Turnaround</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                <span>Ongoing Support</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="service-sidebar">
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Request this Service</h3>
+                            <p class="text-muted">Fill out the form below to request more information about this service.</p>
+                            
+                            <form method="post" action="{% url 'services:request_service' service.slug %}" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <h3 class="card-title">Other Services</h3>
+                            <ul class="list-unstyled service-list">
+                                {% for other_service in other_services %}
+                                <li>
+                                    <a href="{% url 'services:service_detail' other_service.slug %}">
+                                        <i class="{{ other_service.icon }} me-2"></i>
+                                        {{ other_service.title }}
+                                    </a>
+                                </li>
+                                {% empty %}
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-paint-brush me-2"></i>
+                                        UI/UX Design
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-pencil-alt me-2"></i>
+                                        Graphic Design
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-laptop-code me-2"></i>
+                                        Website Development
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-mobile-alt me-2"></i>
+                                        Mobile App Development
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-bullhorn me-2"></i>
+                                        Digital Marketing
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Client Testimonials</h2>
+            <p class="text-muted">What our clients say about our {{ service.title }} service</p>
+        </div>
+        
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"{{ testimonial.content }}"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                            {% else %}
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" alt="{{ testimonial.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="author-info">
+                            <h5>{{ testimonial.name }}</h5>
+                            <p class="text-muted">{{ testimonial.position }}, {{ testimonial.company }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"Zentropic's team delivered an outstanding digital solution that perfectly matched our requirements. Their professionalism and expertise are truly exceptional."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" alt="Client Name">
+                        </div>
+                        <div class="author-info">
+                            <h5>Michael Brown</h5>
+                            <p class="text-muted">CEO, Tech Innovators</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"Working with Zentropic was a game-changer for our business. Their strategic approach and attention to detail exceeded our expectations."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" alt="Client Name">
+                        </div>
+                        <div class="author-info">
+                            <h5>Sarah Thompson</h5>
+                            <p class="text-muted">Marketing Director, Global Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"The team at Zentropic is incredibly talented and responsive. They transformed our outdated site into a modern, user-friendly platform."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="{% static 'images/testimonial-placeholder.jpg' %}" alt="Client Name">
+                        </div>
+                        <div class="author-info">
+                            <h5>David Wilson</h5>
+                            <p class="text-muted">CTO, Digital Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-card bg-primary text-white">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="mb-2">Ready to get started with {{ service.title }}?</h2>
+                    <p class="mb-0">Let's discuss how our {{ service.title }} services can benefit your business.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{% url 'contact:contact' %}" class="btn btn-light btn-lg">Contact Us Today</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

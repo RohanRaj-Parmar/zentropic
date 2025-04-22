@@ -1,0 +1,580 @@
+/* Keep existing CSS root variables and styles */
+:root {
+    --primary-color: #6A1B9A;
+    --primary-light: #9c4dcc;
+    --primary-dark: #38006b;
+    --secondary-color: #212121;
+    --white-color: #ffffff;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --gray-color: #6c757d;
+}
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--dark-color);
+    overflow-x: hidden;
+    padding-top: 76px; /* For fixed navbar */
+}
+
+.section-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.section-header.text-center .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-subtitle {
+    color: var(--gray-color);
+    margin-bottom: 2rem;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Improved Button Responsiveness */
+.btn {
+    white-space: normal;
+    margin-bottom: 10px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--secondary-color) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: var(--white-color);
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+    max-height: 40px; /* Control logo height */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--white-color);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    color: var(--white-color);
+    overflow: hidden;
+    min-height: 100vh;
+    margin-top: -76px; /* To offset the padding-top on body */
+    display: flex;
+    align-items: center;
+    padding: 100px 0 50px; /* Added padding for better spacing on mobile */
+}
+
+.hero-container {
+    width: 100%;
+}
+
+.hero-image {
+    animation: float 6s ease-in-out infinite;
+    max-width: 100%; /* Ensure images don't overflow */
+}
+
+/* Ensure hero image is responsive */
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 10px; /* Space between wrapped buttons */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Services Section */
+.service-card {
+    background-color: var(--white-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 100%; /* Equal height cards */
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(106, 27, 154, 0.1);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.service-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.service-title {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-description {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Push button to bottom */
+}
+
+/* About Us Section */
+.about-section img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Space below image on mobile */
+}
+
+/* Testimonials Section */
+.testimonial-card {
+    background-color: var(--white-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    height: 100%; /* Equal height cards */
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.testimonial-avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent avatar from shrinking */
+}
+
+.testimonial-info {
+    flex-grow: 1; /* Take available space */
+    min-width: 0; /* Allow text to truncate if needed */
+}
+
+.testimonial-name {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.testimonial-position {
+    color: var(--gray-color);
+    margin-bottom: 0;
+    word-break: break-word; /* Allow long words to break */
+}
+
+/* CTA Section */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    padding: 60px 0; /* More padding for better spacing */
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to stack on small screens */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 60px 0 30px; /* More breathing room */
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer ul {
+    padding-left: 0; /* Remove default padding */
+    list-style: none; /* Remove bullets */
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block; /* Better tap targets */
+    padding: 2px 0; /* Larger tap area */
+}
+
+.footer ul li a:hover {
+    color: var(--white-color);
+    padding-left: 5px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start; /* Better alignment for multi-line content */
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-icons a:hover {
+    color: var(--primary-light) !important;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(106, 27, 154, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+/* Make form elements more touch-friendly */
+.form-control {
+    padding: 12px;
+    min-height: 48px; /* Better touch targets */
+}
+
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* Messages Container */
+.messages-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 350px;
+    width: calc(100% - 40px); /* Responsive width */
+}
+
+/* Section spacing */
+section {
+    padding: 60px 0; /* Consistent section padding */
+}
+
+/* Animation Utilities */
+.animate-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.animate-slideUp {
+    animation: slideUp 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Enhanced Responsive Styles */
+@media (max-width: 1199.98px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero-section {
+        text-align: center;
+        padding-top: 120px; /* Additional space for navbar */
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        margin-top: 30px;
+        max-width: 80%; /* Constrain image size */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.25rem;
+    }
+    
+    .section-padding {
+        padding: 50px 0;
+    }
+    
+    /* Adjust section header spacing */
+    .section-header {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section {
+        padding-top: 100px;
+        min-height: auto; /* Remove min-height constraint */
+        height: auto;
+        padding-bottom: 50px;
+    }
+    
+    .hero-image {
+        max-width: 100%;
+    }
+    
+    /* Stack buttons vertically on very small screens */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        margin-right: 0 !important;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    /* Adjust testimonial author layout */
+    .testimonial-author {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .testimonial-avatar,
+    .testimonial-avatar-placeholder {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    /* Improve CTA section on small screens */
+    .cta-section .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-section .btn {
+        width: 100%;
+        max-width: 250px;
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body {
+        padding-top: 66px; /* Adjust for smaller navbar */
+    }
+    
+    .navbar {
+        padding: 10px 0;
+    }
+    
+    .hero-section {
+        margin-top: -66px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    /* Add more breathing room between section elements */
+    .service-card,
+    .testimonial-card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* Adjust spacing for about section */
+    .about-section .btn {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Fix for extra small devices */
+@media (max-width: 359.98px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    .navbar-brand img {
+        max-height: 30px;
+    }
+    
+    h1, .h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block title %}Zentropic - Transforming Ideas into Digital Reality{% endblock %}
+
+{% block content %}
+<style>
+    
+</style>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold">Transforming Ideas into Digital Reality</h1>
+                    <p class="lead my-4">We help businesses grow by providing innovative solutions in web development, mobile apps, UI/UX design, and digital marketing.</p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'services:service_list' %}" class="btn btn-primary btn-lg me-3">Our Services</a>
+                        <a href="{% url 'contact:contact' %}" class="btn btn-outline-light btn-lg">Get a Quote</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="hero-image">
+                        <img src="/static/images/hero.png" alt="Zentropic Digital Solutions" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive digital solutions for your business</p>
+        </div>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <img src="{{ service.icon.url }}" alt="{{ service.name }}" class="img-fluid">
+                    </div>
+                    <h3 class="service-title">{{ service.name }}</h3>
+                    <p class="service-description">{{ service.short_description }}</p>
+                    <a href="{% url 'services:service_detail' service.slug %}" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="{% url 'services:service_list' %}" class="btn btn-primary">View All Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<!-- <section class="about-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6" data-aos="fade-right">
+                <img src="/static/images/logo.png" alt="About Zentropic" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <div class="section-header mb-4">
+                    <h2 class="section-title">About Us</h2>
+                </div>
+                <p class="lead">{{ company_info.about_short }}</p>
+                <div class="mt-4">
+                    <a href="{% url 'core:about' %}" class="btn btn-primary">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Trusted by businesses worldwide</p>
+        </div>
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'100' }}">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"{{ testimonial.quote }}"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        {% if testimonial.image %}
+                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}" class="testimonial-avatar">
+                        {% else %}
+                        <div class="testimonial-avatar-placeholder">{{ testimonial.name|first }}</div>
+                        {% endif %}
+                        <div class="testimonial-info">
+                            <h5 class="testimonial-name">{{ testimonial.name }}</h5>
+                            <p class="testimonial-position">{{ testimonial.position }}, {{ testimonial.company }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section py-5 bg-primary text-white">
+    <div class="container text-center" data-aos="zoom-in">
+        <h2 class="mb-4">Ready to Transform Your Business?</h2>
+        <p class="lead mb-4">Let's work together to bring your ideas to life.</p>
+        <div class="cta-buttons">
+            <a href="{% url 'contact:contact' %}" class="btn btn-light btn-lg me-3">Contact Us</a>
+            <a href="{% url 'services:service_list' %}" class="btn btn-outline-light btn-lg">Our Services</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Hero section animation with GSAP
+    document.addEventListener('DOMContentLoaded', function() {
+        const tl = gsap.timeline();
+        
+        tl.from('.hero-section h1', {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        })
+        .from('.hero-section p', {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        }, '-=0.5')
+        .from('.hero-buttons', {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out'
+        }, '-=0.3')
+        .from('.hero-image', {
+            x: 30,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        }, '-=0.6');
+    });
+</script>
+{% endblock %}

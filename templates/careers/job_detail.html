@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ job.title }} - Careers at Zentropic{% endblock %}
+
+{% block content %}
+<section class="job-detail-hero py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <!-- <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'careers:job_list' %}">Careers</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ job.title }}</li>
+                    </ol> -->
+                </nav>
+                
+                <div class="job-header mb-4">
+                    <h1 class="mb-3">{{ job.title }}</h1>
+                    <div class="job-meta">
+                        <span class="badge bg-primary me-2">{{ job.get_job_type_display }}</span>
+                        <span class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> {{ job.location }}</span>
+                        <span class="text-muted ms-3"><i class="fas fa-briefcase me-1"></i> {{ job.department }}</span>
+                        <span class="text-muted ms-3"><i class="fas fa-money-bill-wave me-1"></i> {{ job.salary_range }}</span>
+                    </div>
+                </div>
+                
+                <div class="job-content mb-5">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Job Description</h3>
+                            <div class="job-description">
+                                {{ job.description|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Responsibilities</h3>
+                            <div class="job-responsibilities">
+                                {{ job.responsibilities|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Qualifications</h3>
+                            <div class="job-qualifications">
+                                {{ job.qualifications|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="apply-section" id="apply-section">
+                    <h3 class="mb-4">Apply for this Position</h3>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            {% if messages %}
+                            <div class="alert alert-success">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            
+                            <form method="post" action="{% url 'careers:job_detail' job.slug %}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.name.id_for_label }}" class="form-label">Full Name</label>
+                                        {{ form.name }}
+                                        {% if form.name.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.name.errors }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.email.id_for_label }}" class="form-label">Email Address</label>
+                                        {{ form.email }}
+                                        {% if form.email.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.email.errors }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.phone.id_for_label }}" class="form-label">Phone Number</label>
+                                    {{ form.phone }}
+                                    {% if form.phone.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.phone.errors }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.resume.id_for_label }}" class="form-label">Resume/CV</label>
+                                    {{ form.resume }}
+                                    <div class="form-text">Max file size: 5MB. Formats: PDF, DOC, DOCX</div>
+                                    {% if form.resume.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.resume.errors }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.cover_letter.id_for_label }}" class="form-label">Cover Letter</label>
+                                    {{ form.cover_letter }}
+                                    {% if form.cover_letter.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.cover_letter.errors }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="consent" name="consent" required>
+                                    <label class="form-check-label" for="consent">I consent to Zentropic storing my personal information for recruitment purposes.</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Application</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Job Summary</h3>
+                            <ul class="list-unstyled job-summary">
+                                <li>
+                                    <span class="label">Position:</span>
+                                    <span class="value">{{ job.title }}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Department:</span>
+                                    <span class="value">{{ job.department }}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Employment Type:</span>
+                                    <span class="value">{{ job.get_job_type_display }}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Location:</span>
+                                    <span class="value">{{ job.location }}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Salary Range:</span>
+                                    <span class="value">{{ job.salary_range }}</span>
+                                </li>
+                                <li>
+                                    <span class="label">Posted Date:</span>
+                                    <span class="value">{{ job.posted_date|date:"F j, Y" }}</span>
+                                </li>
+                                {% if job.closing_date %}
+                                <li>
+                                    <span class="label">Closing Date:</span>
+                                    <span class="value">{{ job.closing_date|date:"F j, Y" }}</span>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            <a href="#apply-section" class="btn btn-primary w-100 mt-3">Apply Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title">Share This Job</h3>
+                            <div class="social-share mt-3">
+                                <a href="#" class="btn btn-outline-primary me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="btn btn-outline-primary me-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-outline-primary me-2"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="btn btn-outline-primary"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="similar-jobs py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Other Open Positions</h2>
+        
+        <div class="row">
+            {% for job in jobs|slice:":3" %}
+                {% if job.slug != job.slug %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="job-card h-100">
+                        <div class="job-header">
+                            <h3 class="job-title">{{ job.title }}</h3>
+                            <span class="job-type">{{ job.get_job_type_display }}</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>{{ job.location }}</span>
+                            </div>
+                            <div class="job-detail">
+                                <i class="fas fa-briefcase"></i>
+                                <span>{{ job.department }}</span>
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            <p>{{ job.description|truncatewords:20|striptags }}</p>
+                        </div>
+                        <div class="job-footer">
+                            <a href="{% url 'careers:job_detail' job.slug %}" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% empty %}
+            <!-- <div class="col-md-6 col-lg-4 mb-4">
+                <div class="job-card h-100">
+                    <div class="job-header">
+                        <h3 class="job-title">Frontend Developer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Remote</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>2+ years</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>We're looking for a talented Frontend Developer to build responsive and interactive web applications.</p>
+                    </div>
+                    <div class="job-footer">
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="job-card h-100">
+                    <div class="job-header">
+                        <h3 class="job-title">Digital Marketing Specialist</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>2+ years</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Join our marketing team to create and execute successful digital marketing campaigns.</p>
+                    </div>
+                    <div class="job-footer">
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div> -->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

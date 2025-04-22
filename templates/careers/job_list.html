@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Careers - Zentropic Software Solution{% endblock %}
+
+{% block content %}
+<section class="careers-hero py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-4">Join Our Team</h1>
+                <p class="lead">Be part of a dynamic team that's shaping the future of digital solutions.</p>
+                <div class="mt-4">
+                    <a href="#open-positions" class="btn btn-primary btn-lg">View Open Positions</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/careers_hero.svg' %}" alt="Join Our Team" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="why-join-us py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Why Join Zentropic?</h2>
+            <p class="section-subtitle">Discover what makes working with us special</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4>Innovative Projects</h4>
+                    <p>Work on cutting-edge technologies and challenging projects that make a real impact.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Collaborative Culture</h4>
+                    <p>Be part of a supportive team that values collaboration, diversity, and inclusion.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Growth Opportunities</h4>
+                    <p>Continuous learning, skill development, and clear career progression paths.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4>Work-Life Balance</h4>
+                    <p>Flexible work arrangements and policies that support your wellbeing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="open-positions py-5" id="open-positions">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Open Positions</h2>
+            <p class="section-subtitle">Join our talented team and grow your career</p>
+        </div>
+        
+        <div class="row">
+            {% for job in jobs %}
+            <div class="col-md-6 mb-4">
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">{{ job.title }}</h3>
+                        <span class="job-type">{{ job.get_job_type_display }}</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ job.location }}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>{{ job.department }}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>{{ job.salary_range }}</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>{{ job.description|truncatewords:30|safe }}</p>
+                    </div>
+                    <div class="job-footer">
+                        <a href="{% url 'careers:job_detail' job.slug %}" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-6 mb-4">
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">Senior UI/UX Designer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Remote</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>3+ years</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Competitive</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>We're looking for a talented UI/UX Designer to create amazing user experiences for our clients' products and services.</p>
+                    </div>
+                    <div class="job-footer">
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3 class="job-title">Full Stack Developer</h3>
+                        <span class="job-type">Full-time</span>
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hybrid</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>2+ years</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Competitive</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Join our development team to build scalable web applications using modern technologies and frameworks.</p>
+                    </div>
+                    <div class="job-footer">
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="job-application py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Don't See a Perfect Match?</h2>
+            <p class="section-subtitle">Submit your resume for future opportunities or contact us directly</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <!-- Success messages display -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success mb-4">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+<!--                         
+                        <div class="mb-4 text-center">
+                            <p>You can submit your application using the form below or email us directly at: 
+                               <a href="mailto:careers@zentropic.com" class="fw-bold">careers@zentropic.com</a></p>
+                        </div>
+                        
+                        <form method="post" action="{% url 'careers:general_application' %}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="position" class="form-label">Desired Position</label>
+                                <input type="text" class="form-control" id="position" name="position" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="resume" class="form-label">Resume/CV</label>
+                                <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                <div class="form-text">Max file size: 5MB. Formats: PDF, DOC, DOCX</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cover_letter" class="form-label">Cover Letter</label>
+                                <textarea class="form-control" id="cover_letter" name="cover_letter" rows="4"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="portfolio" class="form-label">Portfolio URL (Optional)</label>
+                                <input type="url" class="form-control" id="portfolio" name="portfolio">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="consent" name="consent" required>
+                                <label class="form-check-label" for="consent">I consent to Zentropic storing my personal information for recruitment purposes.</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Application</button>
+                        </form> -->
+                        
+                        <div class="mt-4 text-center">
+                            <hr>
+                            <p class="text-muted">Not ready to apply? Feel free to contact us at <a href="mailto:careers@zentropic.com">zentropicsoftwaresolution@gmail.com</a> with any questions about career opportunities at Zentropic.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

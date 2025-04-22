@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Zentropic Software Solution{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'CSS/contact.css' %}">
+
+<section class="contact-hero py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-4">Get In Touch</h1>
+                <p class="lead">Have a question or want to discuss a project? We'd love to hear from you!</p>
+                <div class="contact-info mt-4">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h5>Our Office</h5>
+                            <p>Ahmedabad<br>Gujarat</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h5>Phone</h5>
+                            <p>+91 7433 081013</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h5>Email</h5>
+                            <p>zentropicsoftwaresolution@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links mt-4">
+                    <a href="https://www.facebook.com/profile.php?id=61575238092078" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/Zentropic_ss" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/zentropic-software-solution/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/zentropicsolutions/" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-form-card">
+                    <h3 class="mb-4">Send a Message</h3>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <form method="post" action="{% url 'contact:contact' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section py-5 bg-light">
+    <div class="container">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.0861079115544!2d72.57136231496754!3d23.02250598494506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f54d1c97b3%3A0x6f64df4c4573df93!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1713771490645!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about our services</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What services does Zentropic Software Solution offer?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We offer a comprehensive range of digital services including UI/UX Design, Graphic Design, Website Development, Mobile App Development, Digital Marketing, and Social Media Marketing. Our team of experts works closely with clients to deliver customized solutions that meet their specific business needs.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How long does it take to complete a website project?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                The timeline for website projects varies based on complexity, features, and client requirements. A simple website can be completed in 2-4 weeks, while more complex projects may take 2-3 months. We provide a detailed timeline during the initial consultation after understanding your specific needs.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Do you provide ongoing support and maintenance?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer various support and maintenance packages to ensure your digital assets continue to perform optimally. Our support services include regular updates, security patches, performance optimization, content updates, and technical troubleshooting. We can tailor a maintenance plan to meet your specific requirements.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                What is your pricing structure?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our pricing is project-based and depends on the scope, complexity, and requirements of each project. We provide detailed quotes after an initial consultation where we understand your business needs. For certain services, we also offer package-based pricing options. Please contact us for a customized quote.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                How do I get started with Zentropic Software Solutions?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Getting started is easy! Simply fill out the contact form on this page or call us directly. We'll schedule an initial consultation to discuss your project needs, goals, and budget. After this meeting, we'll provide a detailed proposal outlining the scope, timeline, and cost of your project.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
